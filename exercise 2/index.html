@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{{hello}}
+
+<p id="output"></p>
+<input type="text" ng-model="hello" ng-init="hello = 'test'"/>
+<input id="input" type="text"/>
+
+<select  name="animals" id="" ng-model='select' ng-init="options[0].value">
+    <option value="dog" ng-selected="selected">dog</option>
+    <option value="cat">cat</option>
+</select>
+<h3>
+    I love {{select}}
+</h3>
+
+<select ng-model="model" convert-to-number>
+    <option value="0">Zero</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+</select>
+{{ model }}
+
+<script>
+    var output=document.getElementById('output')
+    document.getElementById('input').addEventListener('keyup', function (event) {
+        console.log(event.target);
+        output.innerHTML = event.target.value
+    })
+</script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+</body>
+</html>

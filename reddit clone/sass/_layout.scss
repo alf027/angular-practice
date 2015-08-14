@@ -1,0 +1,52 @@
+.inline-block{
+  display:inline-block;
+}
+
+
+.clearfix:after {
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.submit-post form label, input{
+  display: block;
+  margin:10px;
+}
+
+body {
+  width: 100%;
+}
+
+main {
+  margin: 0 auto;
+  width: 90%;
+}
+
+main div{
+  background: lightgray;
+}
+
+.img-container {
+  float: left;
+}
+
+.post {
+  width: 100%;
+}
+.post img {
+  height:150px;
+  width:150px;
+  padding: 20px;
+}
+
+.post article {
+  //float:left;
+  width:80%;
+}
+
+.article-footer {
+  float: left;
+}

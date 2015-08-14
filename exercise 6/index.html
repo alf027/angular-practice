@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body ng-app="firstApp1">
+
+<div ng-controller="ContactsController">
+    <h1>Contacts App</h1>
+    <div class="input">
+    <label>Name <input type="text" ng-model="newContact.name" placeholder="name"/></label>
+    <label>Email <input type="email" ng-model="newContact.email" placeholder="email"/></label>
+    <label>Phone <input type="text" ng-model="newContact.phone" placeholder="phone"/></label>
+    <input type="button" value="Add Contact" ng-click="addContact()"/>
+    </div>
+    
+    <div class="search">
+        <label for=""> Search <input ng-model="searchText" type="text"/></label>
+    </div>
+
+    <div class="contacts">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+
+            <tr ng-repeat="contact in contacts | filter:searchText">
+                <td>{{contact.name}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.phone}}</td>
+            </tr>
+
+
+        </table>
+    </div>
+
+
+</div>
+
+
+
+
+<!--<div ng-controller="ExercisesController">-->
+    <!--&lt;!&ndash;<h3>The number is: {{number}}</h3>&ndash;&gt;-->
+    <!--&lt;!&ndash;<button ng-click="pickRandomNumber()">Pick Random Number</button>&ndash;&gt;-->
+
+
+    <!--&lt;!&ndash;<h1>word reverser</h1>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="text" ng-model="word"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;your word is: {{word}}&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="button" value="Reverse" ng-click="reverseWord(word)"/>&ndash;&gt;-->
+    <!--<h1>ping pong</h1>-->
+
+    <!--<div>-->
+        <!--<div id="player1" ng-click="playPong('1')"-->
+             <!--ng-class="{player:true, winningP:winner=='Player 1',losingP:loser==='Player 1'}">-->
+            <!--<h1>player 1</h1>-->
+
+            <!--<h1>{{p1Score}}-->
+            <!--</h1>-->
+
+         <!--<span ng-if="serving===1">-->
+        <!--serving-->
+        <!--</span>-->
+
+
+        <!--</div>-->
+
+        <!--<div id='player2' ng-click="playPong('2')"-->
+             <!--ng-class="{player:true, winningP:winner==='Player 2', losingP:loser==='Player 2'}">-->
+            <!--<h1>player 2</h1>-->
+
+
+            <!--<h1>{{p2Score}}</h1>-->
+        <!--<span ng-if="serving===2">-->
+        <!--serving-->
+        <!--</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div>-->
+        <!--{{winner}} Wins!-->
+        <!--<button ng-click="reset()">Reset</button>-->
+    <!--</div>-->
+
+<!--</div>-->
+</body>
+</html>

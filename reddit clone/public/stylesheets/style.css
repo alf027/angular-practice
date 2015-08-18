@@ -343,12 +343,19 @@ td, th {
 .inline-block {
   display: inline-block; }
 
+nav {
+  background: #eee;
+  margin-bottom: 100px; }
+
 .submit-post form label, input {
   display: block;
   margin: 10px; }
 
 .submit-post {
   padding: 20px; }
+
+.block {
+  display: block; }
 
 body {
   width: 100%; }
@@ -357,8 +364,14 @@ main {
   margin: 0 auto;
   width: 90%; }
 
+.dropdown {
+  display: inline-block; }
+
 main div {
-  background: lightgray; }
+  background: #eee; }
+
+.title {
+  display: inline-block; }
 
 .img-container {
   background-size: cover;
@@ -366,8 +379,8 @@ main div {
   background-position: center center;
   overflow: hidden;
   margin-top: 15px;
-  width: 300px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   margin: 20px;
   display: inline-block; }
 
@@ -382,12 +395,14 @@ main div {
   width: 100%;
   padding: 20px; }
 
+.author {
+  text-align: right; }
+
 .post article {
-  position: relative;
-  top: -50px;
+  vertical-align: top;
   display: inline-block;
   height: 80%;
-  width: 65%; }
+  width: 80%; }
 
 @keyframes flipInX {
   0% {

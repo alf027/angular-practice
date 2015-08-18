@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>Reddit Clone</title>
     <link rel="stylesheet" href="public/stylesheets/style.css"/>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.js></script>
     <script src=public/javascripts/moment.js></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.2/angular-moment.min.js></script>
     <script src=public/javascripts/app.js></script>
+
 </head>
 <body ng-app="redditApp">
 <nav>
@@ -17,12 +20,15 @@
     <h3 ng-click="showme= !showme" class="inline-block">Submit Post</h3>
     <input class="inline-block" ng-model="searchText" type="text" placeholder="Search"/>
     <label for="sort">Sort By</label>
-    <select name="sort" ng-model="order" id="sort">
-        <option value="votes">Votes</option>
-        <option value="date">date</option>
-        <option value="title">title</option>
 
-    </select>
+    <form class="pure-form dropdown" action="">
+        <select name="sort" ng-model="order" id="sort">
+            <option value="votes">Votes</option>
+            <option value="date">Date</option>
+            <option value="title">Title</option>
+
+        </select>
+    </form>
 
 
 </nav>
@@ -30,17 +36,17 @@
 <main ng-controller="RedditController">
 
     <div ng-show="showme" class="submit-post">
-        <form ng-submit="addPost(title,author,imgUrl,description,$event)">
+        <form class="pure-form pure-form-stacked" ng-submit="addPost(title,author,imgUrl,description,$event)">
 
             <label for="title">Title</label>
             <input ng-model="title" type="text" id="title" required/>
-            <label for="author">author</label>
+            <label for="author">Author</label>
             <input ng-model="author" type="text" id="author" required/>
             <label for="img-url">Image Url</label>
             <input ng-model="imgUrl" type="text" id="img-url" required/>
             <label for="description">Description</label>
             <input ng-model="description" type="text" id="description" required/>
-            <input type="submit" value="Submit Post"/>
+            <input class="pure-button" type="submit" value="Submit Post"/>
 
         </form>
 
@@ -53,37 +59,42 @@
         </div>
 
         <article>
-            <h2>{{post.title}}</h2>
+            <h2 class="title">{{post.title}}</h2>
 
-            <h3>{{post.votes}}</h3> <span ng-click="upVote(post)">up ^</span> <span
-                ng-click="downVote(post)">down \/</span>
+            <h2 class="inline-block" ng-click="upVote(post)">| <i class="fa fa-arrow-up"></i></h2>
 
-            <p>{{post.author}}</p>
+            <h2 class="inline-block" ng-click="downVote(post)"><i class="fa fa-arrow-down"></i></h2>
+
+            <h2 class="inline-block">{{post.votes}}</h2>
+
+            <p class="author">By: {{post.author}}</p>
 
             <p>{{post.description}}</p>
             <!--<div class="article-footer">-->
             <span>{{post.date | amCalendar}} |</span>
-                <span ng-click="showComments = !showComments">
+
+            <span ng-click="showComments = !showComments">
                     <ng-pluralize count="post.comments.length"
                                   when="{'0': '0 Comments',
                      'one': '1 Comment',
                      'other': '{} Comments'}">
                     </ng-pluralize>
-                     |</span>
-            <span ng-click="showAddComment = !showAddComment">add comment</span>
+                |</span>
+            <span ng-click="showAddComment = !showAddComment">Add Comment</span>
 
+            <div ng-repeat="comment in post.comments" ng-show="showComments" class="comments">
+                <p class="pComment">{{comment.author}}: {{comment.comment}}</p>
+            </div>
+
+            <form class='comment-form pure-form' ng-show="showAddComment"
+                  ng-submit="addComment(commentAuthor, comment, post);showComments = true; showAddComment =false;">
+                <input type="text" ng-model="commentAuthor" placeholder="Author"/>
+                <input type="text" ng-model="comment" placeholder="Comment"/>
+                <input class="pure-button" type="submit" value="Add Comment"/>
+            </form>
 
         </article>
 
-        <div ng-repeat="comment in post.comments" ng-show="showComments" class="comments">
-            <p class="pComment">{{comment.author}}: {{comment.comment}}</p>
-        </div>
-
-        <form class='comment-form' ng-show="showAddComment" ng-submit="addComment(commentAuthor, comment, post);showComments = true; showAddComment =false;">
-            <input type="text" ng-model="commentAuthor" placeholder="Author"/>
-            <input type="text" ng-model="comment" placeholder="comment"/>
-            <input type="submit" value="Add Comment"/>
-        </form>
 
     </div>
 
